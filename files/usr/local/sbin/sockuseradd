@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Sockd is configured to accept only "sockusers" group users
+GROUP=sockusers
+
+if [ $# -ne 2 ]
+then 
+    echo "Usage: sockuseradd USERNAME PASSWORD"
+    exit 1
+fi
+
+getent group $GROUP > /dev/null || addgroup $GROUP
+adduser -s /sbin/nologin -D -H -G $GROUP $1 && echo $1:$2 | chpasswd &> /dev/null

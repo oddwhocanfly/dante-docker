@@ -4,8 +4,8 @@ FROM alpine:edge
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories &&\
     apk --no-cache add dante-server
 
-COPY ./files/etc/sockd.conf /etc/sockd.conf
-COPY ./files/usr/local/sbin/sockuseradd /usr/local/sbin/sockuseradd
+COPY ./sockd.conf  /etc/sockd.conf
+COPY ./sockuseradd /usr/local/sbin/sockuseradd
 
 # Dante is configured to use this directory for logs
 RUN mkdir /var/log/sockd
